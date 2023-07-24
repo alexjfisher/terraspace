@@ -14,7 +14,12 @@ module Terraspace
       else
         super # use the configured formatter
       end
-      out = line.force_encoding('UTF-8') =~ /\n$/ ? line : "#{line}\n"
+      if line.force_encoding('UTF-8') =~ /\n$/
+        out = line
+      else
+        out = "#{line}\n"
+      end
+      # out = line.force_encoding('UTF-8') =~ /\n$/ ? line : "#{line}\n"
       @@buffer << out
       out
     end
